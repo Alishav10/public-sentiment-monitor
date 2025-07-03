@@ -1,0 +1,35 @@
+[
+  {
+    "title": "AI reshaping global politics",
+    "link": "https://www.theguardian.com/...",
+    "published_date": null,
+    "sentiment": "neutral"
+  },
+  {
+    "title": "AI reshaping global politics",
+    "link": "https://www.theguardian.com/...",
+    "published_date": null,
+    "sentiment": "neutral"
+  },
+  {
+    "title": "AI helps climate researchers...",
+    "link": "https://...",
+    "published_date": "2025-07-03",
+    "source": "The Guardian",
+    "sentiment": "positive"
+  },
+  {
+    "title": "AI helps climate researchers...",
+    "url": "https://...",
+    "date": "2025-07-03",
+    "sentiment": "positive",
+    "compound": 0.3818
+  },
+  {
+    "title": "AI helps climate researchers...",
+    "url": "https://...",
+    "date": "2025-07-03",
+    "sentiment": "positive",
+    "compound": 0.3818
+  }
+]
