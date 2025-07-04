@@ -5,7 +5,8 @@ import json
 import sys
 
 # Add parent directory (../social_scraper) to path
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'social_scraper')))
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.append(BASE_DIR)
 
 # Import scraper
 from social_scraper.keyword_scraper.scrape_google_news import scrape_google_news
