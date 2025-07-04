@@ -5,6 +5,7 @@ import SummaryChart from './SummaryChart';
 import TrendsChart from './TrendsChart';
 
 const API_BASE_URL = 'https://public-sentiment-monitor-2.onrender.com/api/sentiment';
+;
 
 const Dashboard = () => {
   const [articles, setArticles] = useState([]);
@@ -17,6 +18,7 @@ const Dashboard = () => {
 
     try {
       const response = await fetch(`${API_BASE_URL}/search?keyword=${encodeURIComponent(keyword)}`);
+;
       
       if (!response.ok) {
         throw new Error(`Server error: ${response.status}`);
