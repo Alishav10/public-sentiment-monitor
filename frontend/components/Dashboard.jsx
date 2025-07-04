@@ -1,20 +1,40 @@
-import React from 'react';
+import React, { useState } from 'react';
+import SearchBar from './SearchBar';
+import SearchResults from './SearchResults';
 import SummaryChart from './SummaryChart';
-import TrendsChart from './TrendsChart';  // 👈 Add this
+import TrendsChart from './TrendsChart';
+
+const API_BASE_URL = 'https://public-sentiment-monitor-2.onrender.com/api/sentiment';
 
 const Dashboard = () => {
+  const [articles, setArticles] = useState([]);
+  const [summary, setSummary] = useState(null);
+  const [trends, setTrends] = useState([]);
+  const [error, setError] = useState('');
+
+  const handleSearch = async (keyword) => {
+    if (!keyword.trim()) return;
+    try {
+      const response = await fetch(`${API_BASE_URL}/search?keyword=${encodeURIComponent(keyword)}`);
+      const data = await response.json();
+
+      setArticles(data.articles || []);
+      setSummary(data.summary || {});
+      setTrends(data.trends || []);
+      setError('');
+    } catch (err) {
+      console.error(err);
+      setError('Failed to fetch results. Please try again.');
+    }
+  };
+
   return (
-    <div className="p-6 space-y-8">
-      <h1 className="text-4xl font-bold text-center text-gray-800">
-        Public Sentiment Monitor
-      </h1>
-
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <SummaryChart />
-        <TrendsChart /> {/* 👈 Plug it in */}
-      </div>
-
-      {/* ArticleList will come next */}
+    <div className="p-4 max-w-6xl mx-auto space-y-6">
+      <SearchBar onSearch={handleSearch} />
+      {error && <div className="text-red-600">{error}</div>}
+      {summary && <SummaryChart summary={summary} />}
+      {trends.length > 0 && <TrendsChart trends={trends} />}
+      {articles.length > 0 && <SearchResults results={articles} />}
     </div>
   );
 };

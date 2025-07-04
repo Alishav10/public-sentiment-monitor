@@ -1,5 +1,6 @@
 import React from 'react';
 
+
 const SearchResults = ({ results }) => {
   if (!results.length) return <p className="text-center text-gray-500 mt-4">No results found.</p>;
 
