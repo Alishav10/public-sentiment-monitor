@@ -9,7 +9,7 @@ import autoTable from 'jspdf-autotable';
 import Dashboard from './components/Dashboard';
 
 
-const API_BASE_URL = " https://public-sentiment-monitor-2.onrender.com/api/sentiment";
+const API_BASE_URL = " https://public-sentiment-monitor-2.onrender.com";
 
 const SENTIMENT_COLORS = {
   Positive: '#4CAF50',
