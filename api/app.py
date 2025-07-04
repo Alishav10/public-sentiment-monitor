@@ -23,7 +23,7 @@ DATA_FILE = os.path.join(BASE_DIR, 'sentiment_data.json')
 def get_sentiment():
     return jsonify({"message": "API working!"})
 
-@app.route("/api/sentiment/search", methods=["GET"])
+@app.route("/api/sentiment", methods=["GET"])
 def home():
     return "Public Sentiment Monitor API is running!"
 
