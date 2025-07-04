@@ -22,6 +22,10 @@ DATA_FILE = os.path.join(os.path.dirname(__file__), 'sentiment_data.json')
 def get_sentiment():
     return jsonify({"message": "API working!"})
 
+@app.route("/")
+def home():
+    return "Public Sentiment Monitor API is running!"
+
 # Load articles from file
 def load_data():
     if not os.path.exists(DATA_FILE):
