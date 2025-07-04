@@ -19,7 +19,7 @@ CORS(app)
 DATA_FILE = os.path.join(BASE_DIR, 'sentiment_data.json')
 
 # Health check
-@app.route("/api/sentiment/search", methods=["GET"])
+@app.route("/api/sentiment", methods=["GET"])
 def get_sentiment():
     return jsonify({"message": "API working!"})
 
