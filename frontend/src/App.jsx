@@ -7,7 +7,7 @@ import { Sun, Moon, Search, RefreshCw, Download } from 'lucide-react';
 import jsPDF from 'jspdf';
 import autoTable from 'jspdf-autotable';
 
-const API_BASE_URL = "http://127.0.0.1:5000/api/sentiment";
+const API_BASE_URL = " https://public-sentiment-monitor-2.onrender.com";
 
 const SENTIMENT_COLORS = {
   Positive: '#4CAF50',
