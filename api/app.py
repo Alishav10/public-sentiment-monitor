@@ -4,25 +4,26 @@ import os
 import json
 import sys
 
-# Add parent directory (../social_scraper) to path
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-sys.path.append(BASE_DIR)
+# Add social_scraper directory to system path
+BASE_DIR = os.path.abspath(os.path.dirname(__file__))
+SCRAPER_DIR = os.path.join(BASE_DIR, '..', 'social_scraper')
+sys.path.append(SCRAPER_DIR)
 
 # Import scraper
-from social_scraper.keyword_scraper.scrape_google_news import scrape_google_news
+from keyword_scraper.scrape_google_news import scrape_google_news
 
 app = Flask(__name__)
 CORS(app)
 
 # File where articles are stored
-DATA_FILE = os.path.join(os.path.dirname(__file__), 'sentiment_data.json')
+DATA_FILE = os.path.join(BASE_DIR, 'sentiment_data.json')
 
 # Health check
-@app.route("/api/sentiment")
+@app.route("/api/sentiment", methods=["GET"])
 def get_sentiment():
     return jsonify({"message": "API working!"})
 
-@app.route("/")
+@app.route("/", methods=["GET"])
 def home():
     return "Public Sentiment Monitor API is running!"
 
@@ -38,7 +39,7 @@ def save_data(data):
     with open(DATA_FILE, 'w', encoding='utf-8') as f:
         json.dump(data, f, indent=2)
 
-#  Real-time Google News search
+# Real-time Google News search
 @app.route('/api/sentiment/search', methods=['GET'])
 def search_sentiment():
     keyword = request.args.get('keyword')
@@ -70,12 +71,12 @@ def search_sentiment():
         "trends": trend_list
     })
 
-#  Get saved raw articles
+# Get saved raw articles
 @app.route('/api/sentiment/raw', methods=['GET'])
 def get_raw_articles():
     return jsonify(load_data())
 
-#  Get sentiment summary
+# Get sentiment summary
 @app.route('/api/sentiment/summary', methods=['GET'])
 def get_summary():
     data = load_data()
@@ -93,7 +94,7 @@ def get_summary():
             stats["sentiment_breakdown"][sentiment] += 1
     return jsonify(stats)
 
-#  Get sentiment trends
+# Get sentiment trends
 @app.route('/api/sentiment/trends', methods=['GET'])
 def get_trends():
     data = load_data()
@@ -111,6 +112,6 @@ def get_trends():
     ]
     return jsonify(trend_list)
 
-# Start Flask server
+# Start Flask app
 if __name__ == "__main__":
-    app.run(host="127.0.0.1", port=5000, debug=True)
+    app.run(host="0.0.0.0", port=5000, debug=True)
