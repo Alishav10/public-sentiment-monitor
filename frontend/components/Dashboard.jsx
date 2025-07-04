@@ -4,6 +4,8 @@ import SearchResults from './SearchResults';
 import SummaryChart from './SummaryChart';
 import TrendsChart from './TrendsChart';
 
+const API_BASE_URL = 'https://public-sentiment-monitor-2.onrender.com/api/sentiment';
+
 const Dashboard = () => {
   const [articles, setArticles] = useState([]);
   const [summary, setSummary] = useState(null);
@@ -11,15 +13,26 @@ const Dashboard = () => {
   const [error, setError] = useState('');
 
   const handleSearch = async (keyword) => {
-  try {
-    const response = await fetch(`https://public-sentiment-monitor-2.onrender.com/api/sentiment`);
-    const data = await response.json();
-    console.log("Health check:", data);
-  } catch (err) {
-    console.error("Health check failed:", err);
-  }
-};
+    if (!keyword.trim()) return;
 
+    try {
+      const response = await fetch(`${API_BASE_URL}/search?keyword=${encodeURIComponent(keyword)}`);
+      
+      if (!response.ok) {
+        throw new Error(`Server error: ${response.status}`);
+      }
+
+      const data = await response.json();
+
+      setArticles(data.articles || []);
+      setSummary(data.summary || {});
+      setTrends(data.trends || []);
+      setError('');
+    } catch (err) {
+      console.error("Search failed:", err);
+      setError("Search failed: " + err.message);
+    }
+  };
 
   return (
     <div className="p-4 max-w-6xl mx-auto space-y-6">
