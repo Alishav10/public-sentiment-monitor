@@ -6,10 +6,11 @@ import {
 import { Sun, Moon, Search, RefreshCw, Download } from 'lucide-react';
 import jsPDF from 'jspdf';
 import autoTable from 'jspdf-autotable';
-import Dashboard from './components/Dashboard';
+import Dashboard from './components/Dashboard.jsx';
 
 
-const API_BASE_URL = " https://public-sentiment-monitor-2.onrender.com";
+const API_BASE_URL = import.meta.env.VITE_API_URL;
+
 
 const SENTIMENT_COLORS = {
   Positive: '#4CAF50',
