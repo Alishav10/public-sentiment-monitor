@@ -4,8 +4,6 @@ import SearchResults from './SearchResults';
 import SummaryChart from './SummaryChart';
 import TrendsChart from './TrendsChart';
 
-const API_BASE_URL = 'https://public-sentiment-monitor-2.onrender.com/api/sentiment';
-
 const Dashboard = () => {
   const [articles, setArticles] = useState([]);
   const [summary, setSummary] = useState(null);
@@ -16,8 +14,10 @@ const Dashboard = () => {
     if (!keyword.trim()) return;
 
     try {
-      console.log("Sending request to:", `${API_BASE_URL}/search?keyword=${encodeURIComponent(keyword)}`);
-      const response = await fetch(`${API_BASE_URL}/search?keyword=${encodeURIComponent(keyword)}`);
+      const fullURL = `https://public-sentiment-monitor-2.onrender.com/api/sentiment/search?keyword=${encodeURIComponent(keyword)}`;
+      console.log("Sending request to:", fullURL);
+
+      const response = await fetch(fullURL);
       const text = await response.text();
       console.log("Raw response:", text);
 
