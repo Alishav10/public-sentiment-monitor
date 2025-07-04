@@ -6,6 +6,7 @@ import TrendsChart from './TrendsChart';
 
 const API_BASE_URL = 'https://public-sentiment-monitor-2.onrender.com/api/sentiment';
 
+
 const Dashboard = () => {}
   const [articles, setArticles] = useState([]);
   const [summary, setSummary] = useState(null);
