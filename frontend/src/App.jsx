@@ -33,7 +33,7 @@ const App = () => {
     if (!searchKeyword.trim()) return;
 
     try {
-      const response = await fetch(`${API_BASE_URL}/search?keyword=${encodeURIComponent(searchKeyword)}`);
+      const response = await fetch(`${API_BASE_URL}/api/sentiment/search?keyword=${encodeURIComponent(searchKeyword)}`);
       const data = await response.json();
 
       setRawContent(data.articles || []);
