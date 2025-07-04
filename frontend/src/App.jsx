@@ -6,6 +6,8 @@ import {
 import { Sun, Moon, Search, RefreshCw, Download } from 'lucide-react';
 import jsPDF from 'jspdf';
 import autoTable from 'jspdf-autotable';
+import Dashboard from './components/Dashboard';
+
 
 const API_BASE_URL = " https://public-sentiment-monitor-2.onrender.com";
 
@@ -56,6 +58,10 @@ const App = () => {
       setError(`Search failed: ${e.message}`);
     }
   };
+  
+  function App() {
+  return <Dashboard />;
+}
 
   const handleDownloadPDF = () => {
     const doc = new jsPDF();

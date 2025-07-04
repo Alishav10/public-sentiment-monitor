@@ -13,20 +13,23 @@ const Dashboard = () => {
   const [error, setError] = useState('');
 
   const handleSearch = async (keyword) => {
-    if (!keyword.trim()) return;
-    try {
-      const response = await fetch(`${API_BASE_URL}/search?keyword=${encodeURIComponent(keyword)}`);
-      const data = await response.json();
+  if (!keyword.trim()) return;
+  
+  try {
+  console.log("Sending request to:", `${API_BASE_URL}/search?keyword=${encodeURIComponent(keyword)}`);
+  const response = await fetch(`${API_BASE_URL}/search?keyword=${encodeURIComponent(keyword)}`);
+  const text = await response.text();
+  console.log("Raw response:", text); // This will help debug
 
-      setArticles(data.articles || []);
-      setSummary(data.summary || {});
-      setTrends(data.trends || []);
-      setError('');
-    } catch (err) {
-      console.error(err);
-      setError('Failed to fetch results. Please try again.');
-    }
-  };
+  const data = JSON.parse(text);
+  setArticles(data.articles || []);
+  setSummary(data.summary || {});
+  setTrends(data.trends || []);
+  setError('');
+} catch (err) {
+  console.error("Search failed:", err);
+  setError("Search failed: " + err.message);
+}
 
   return (
     <div className="p-4 max-w-6xl mx-auto space-y-6">
