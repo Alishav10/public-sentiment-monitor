@@ -11,26 +11,15 @@ const Dashboard = () => {
   const [error, setError] = useState('');
 
   const handleSearch = async (keyword) => {
-    if (!keyword.trim()) return;
+  try {
+    const response = await fetch(`https://public-sentiment-monitor-2.onrender.com/api/sentiment`);
+    const data = await response.json();
+    console.log("Health check:", data);
+  } catch (err) {
+    console.error("Health check failed:", err);
+  }
+};
 
-    try {
-      const fullURL = `https://public-sentiment-monitor-2.onrender.com/api/sentiment/search?keyword=${encodeURIComponent(keyword)}`;
-      console.log("Sending request to:", fullURL);
-
-      const response = await fetch(fullURL);
-      const text = await response.text();
-      console.log("Raw response:", text);
-
-      const data = JSON.parse(text);
-      setArticles(data.articles || []);
-      setSummary(data.summary || {});
-      setTrends(data.trends || []);
-      setError('');
-    } catch (err) {
-      console.error("Search failed:", err);
-      setError("Search failed: " + err.message);
-    }
-  };
 
   return (
     <div className="p-4 max-w-6xl mx-auto space-y-6">
