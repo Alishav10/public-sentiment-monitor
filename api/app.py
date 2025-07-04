@@ -8,7 +8,7 @@ import sys
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'social_scraper')))
 
 # Import scraper
-from keyword_scraper.scrape_google_news import scrape_google_news
+from social_scraper.keyword_scraper.scrape_google_news import scrape_google_news
 
 app = Flask(__name__)
 CORS(app)
@@ -107,5 +107,5 @@ def get_trends():
     return jsonify(trend_list)
 
 # Start Flask server
-if __name__ == '__main__':
-    app.run(debug=True)
+if __name__ == "__main__":
+    app.run(host="127.0.0.1", port=5000, debug=True)
