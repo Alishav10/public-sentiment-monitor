@@ -23,4 +23,5 @@ const SummaryChart = ({ summary }) => {
     </div>
   );
 };
+export default SummaryChart;
 

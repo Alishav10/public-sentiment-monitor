@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import SearchBar from './SearchBar';
 import SearchResults from './SearchResults';
-import SummaryChart from './SummaryChart';
-import TrendsChart from './TrendsChart';
+import SummaryChart from '../components/SummaryChart';
+import TrendsChart from '../components/TrendsChart';
 
 const API_BASE_URL = 'https://public-sentiment-monitor-2.onrender.com/api/sentiment';
 ;

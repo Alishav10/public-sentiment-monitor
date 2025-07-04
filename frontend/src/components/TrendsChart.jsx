@@ -40,3 +40,4 @@ const TrendsChart = ({ trends }) => {
     </div>
   );
 };
+export default TrendsChart;
