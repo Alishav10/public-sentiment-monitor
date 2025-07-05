@@ -8,9 +8,8 @@ The **Public Sentiment Monitor** is a full-stack web application that performs *
 
 ##  Live Demo
 
-- 🔗 **Frontend** (React + TailwindCSS + Vite): [public-sentiment-monitor.vercel.app](https://your-vercel-url.vercel.app)
-- 🔗 **Backend API** (Flask + Render): [public-sentiment-monitor API](https://your-render-url.onrender.com/api/sentiment)
-
+- 🔗 **Frontend** (React + TailwindCSS + Vite): [public-sentiment-monitor.vercel.app](https://public-sentiment-monitor.vercel.app/)
+- 🔗 **Backend API** (Flask + Render): [public-sentiment-monitor API](https://public-sentiment-monitor-2.onrender.com/)
 ---
 
 ##  Features
